@@ -1,8 +1,7 @@
 #!/usr/bin/python3
+"""__init__ file"""
 from models.engine.file_storage import FileStorage
 
-
-"""__init__ file"""
 
 storage = FileStorage()
 storage.reload()

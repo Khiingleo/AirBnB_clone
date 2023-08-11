@@ -1,9 +1,8 @@
 #!/usr/bin/python3
+""" defines a BaseModel class which is the parent of all classes"""
 from datetime import datetime
 from uuid import uuid4
 import models
-
-""" defines a BaseModel class which is the parent of all classes"""
 
 
 class BaseModel():
@@ -20,12 +19,16 @@ class BaseModel():
         time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
-                if key != '__class__':
-                    if key in ['created_at', 'updated_at']:
-                        setattr(self, key, datetime.strptime(value, time))
-                    else:
-                        setattr(self, key, value)
-            self.id = kwargs.get('id', str(uuid4()))
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(kwargs["created_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(kwargs["updated_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                elif "__class__" == key:
+                    pass
+                else:
+                    setattr(self, key, value)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -36,8 +39,9 @@ class BaseModel():
         """
         returns the str output of the BaseaModel
         """
-        return ("[{}] ({}) {}".
-                format(type(self).__name__, self.id, self.__dict__))
+        return "[{}] ({}) {}".format(
+            type(self).__name__, self.id, self.__dict__
+        )
 
     def save(self):
         """

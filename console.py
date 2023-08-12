@@ -175,17 +175,18 @@ class HBNBCommand(cmd.Cmd):
                 argl = class_name + ' ' + arg_id
                 HBNBCommand.do_destroy(self, argl)
             elif command == "update":
+                c_nam = class_name
                 args = args[1].split(",")
                 arg_id = args[0].strip("'")
                 arg_id = arg_id.strip('"')
-                attr_name = args[1].strip(",")
-                attr_val = args[2]
-                attr_name = attr_name.strip(" ")
-                attr_name = attr_name.strip("'")
-                attr_name = attr_name.strip('"')
-                attr_val = attr_val.strip(' ')
-                attr_val = attr_val.strip(')')
-                argl = class_name + ' ' + arg_id + ' ' + attr_name + ' ' + attr_val
+                att_name = args[1].strip(",")
+                att_val = args[2]
+                att_name = att_name.strip(" ")
+                att_name = att_name.strip("'")
+                att_name = att_name.strip('"')
+                att_val = att_val.strip(' ')
+                att_val = att_val.strip(')')
+                argl = c_nam + ' ' + arg_id + ' ' + att_name + ' ' + att_val
                 HBNBCommand.do_update(self, argl)
             else:
                 print("*** Unknown Syntax: {}".format(arg))

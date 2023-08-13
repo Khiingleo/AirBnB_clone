@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines a module City that inherits from  Base"""
+"""Define a module City that inherits from  Base"""
 from models.base_model import BaseModel
 
 

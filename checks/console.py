@@ -113,39 +113,26 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
         args = parse(arg)
-        if len(args) < 1:
+        if len(args) >= 4:
+            key = "{}.{}".format(args[0], args[1])
+            cast = type(eval(args[3]))
+            arg3 = args[3]
+            arg3 = arg3.strip('"')
+            arg3 = arg3.strip("'")
+            setattr(storage.all()[key], args[2], cast(arg3))
+            storage.all()[key].save()
+        elif len(args) == 0:
             print("** class name missing **")
-            return
-        
-        class_name = args[0]
-        if class_name not in HBNBCommand.classes:
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-            return
-
-        if len(args) < 2:
+        elif len(args) == 1:
             print("** instance id missing **")
-            return
-
-        instance_key = "{}.{}".format(args[0], args[1])
-        instances = storage.all()
-        if instance_key not in instances:
+        elif ("{}.{}".format(args[0], args[1])) not in storage.all().keys():
             print("** no instance found **")
-            return
-
-        if len(args) < 3:
+        elif len(args) == 2:
             print("** attribute name missing **")
-            return
-
-        if len(args) < 4:
+        else:
             print("** value missing **")
-            return
-
-        cast = type(eval(args[3]))
-        arg3 = args[3].strip('"').strip("'")
-
-        instance = instances[instance_key]
-        setattr(instance, args[2], cast(arg3))
-        instance.save()
 
     def do_count(self, arg):
         """ counts the number of instances of a class and returns it"""

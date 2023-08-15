@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+"""
+Retrieve all objects from storage
+Display reloaded objects
+Create a new object and set attributes
+Save the new object
+and finally Display the newly created object
+"""
 from models import storage
 from models.base_model import BaseModel
 

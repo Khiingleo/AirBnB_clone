@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Defines a HBNBCommand class"""
+"""
+Defines a HBNBCommand class
+"""
 import cmd
 from models.base_model import BaseModel
 from models import storage
@@ -12,7 +14,9 @@ from models.review import Review
 
 
 def parse(arg):
-    """ parses the input of the user"""
+    """
+    parses the input of the user
+    """
     return tuple(arg.split())
 
 
@@ -199,7 +203,8 @@ class HBNBCommand(cmd.Cmd):
                 att_name = att_name.strip('"')
                 att_val = att_val.strip(' ')
                 att_val = att_val.strip(')')
-                argl = c_nam + ' ' + arg_id + ' ' + att_name + ' ' + att_val
+                argl = (c_nam + ' ' + arg_id + ' ' +
+                        att_name + ' ' + att_val)
                 HBNBCommand.do_update(self, argl)
             else:
                 print("*** Unknown Syntax: {}".format(arg))

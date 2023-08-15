@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""defines a class Place that inherits from Base"""
+"""define a class Place that inherits from Base"""
 from models.base_model import BaseModel
 
 

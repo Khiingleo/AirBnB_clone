@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
         except NameError:
-            print("** class doesn't exits **")
+            print("** class doesn't exist **")
 
     def do_show(self, arg):
         """Print the string representation of an instance"""
